@@ -99,17 +99,9 @@
     };
   }
 
+  // 空白初始化：帳戶 / 交易 / 專案皆為空，僅建立一組標準「類別」與「標籤」
+  // 作為記帳時的分類工具（App 目前無新增類別的介面，故保留這組選項）。
   async function seed() {
-    var now = new Date(), Y = now.getFullYear(), M = now.getMonth(), today = now.getDate();
-    var iso = function (d, h, m) { return new Date(Y, M, d, h || 12, m || 0).toISOString(); };
-    var clamp = function (d) { return Math.max(d, 1); };
-
-    var accounts = [
-      { id: "a1", name: "玉山現金回饋卡", currency: "TWD", initial: 0, type: "CREDIT_CARD", icon: "wallet", color: "#1F6FEB", createdAt: now.toISOString() },
-      { id: "a2", name: "錢包現金", currency: "TWD", initial: 3200, type: "CASH", icon: "wallet", color: "#1FA971", createdAt: now.toISOString() },
-      { id: "a3", name: "台幣活存", currency: "TWD", initial: 158000, type: "BANK", icon: "home", color: "#6C5CE7", createdAt: now.toISOString() },
-      { id: "a4", name: "美金外幣帳戶", currency: "USD", initial: 1250, type: "BANK", icon: "globe", color: "#E08A1E", createdAt: now.toISOString() }
-    ];
     var categories = [
       { id: "c1", name: "餐飲", icon: "food", color: "#E5564E", type: "EXPENSE", sortOrder: 0 },
       { id: "c2", name: "交通", icon: "transport", color: "#6C5CE7", type: "EXPENSE", sortOrder: 0 },
@@ -122,26 +114,9 @@
       { id: "i2", name: "獎金", icon: "gift", color: "#E08A1E", type: "INCOME", sortOrder: 0 },
       { id: "i3", name: "投資", icon: "invest", color: "#1F6FEB", type: "INCOME", sortOrder: 0 }
     ];
-    var projects = [
-      { id: "p1", name: "日本關西旅行", budget: 60000, color: "#E5564E" },
-      { id: "p2", name: "新家裝潢", budget: 120000, color: "#6C5CE7" }
-    ];
     var tags = ["可報帳", "固定支出", "聚餐", "禮物", "訂閱"].map(function (n) { return { name: n }; });
-    var transactions = [
-      mkTxn({ type: "INCOME", amount: 62000, categoryId: "i1", accountId: "a3", merchant: "六月份薪資", date: iso(5, 9), tags: ["固定支出"] }),
-      mkTxn({ type: "EXPENSE", amount: 180, categoryId: "c1", accountId: "a1", merchant: "星巴克 信義店", date: iso(today, 8, 40) }),
-      mkTxn({ type: "EXPENSE", amount: 1280, categoryId: "c3", accountId: "a1", merchant: "UNIQLO", date: iso(clamp(today - 1), 15) }),
-      mkTxn({ type: "EXPENSE", amount: 49, categoryId: "c2", accountId: "a2", merchant: "捷運", date: iso(today, 18, 20) }),
-      mkTxn({ type: "EXPENSE", amount: 390, categoryId: "c7", accountId: "a1", merchant: "Netflix", date: iso(2, 1), tags: ["訂閱"] }),
-      mkTxn({ type: "EXPENSE", amount: 850, categoryId: "c1", accountId: "a1", merchant: "晚餐聚會", date: iso(clamp(today - 2), 19), tags: ["聚餐"] }),
-      mkTxn({ type: "TRANSFER", amount: 10000, accountId: "a3", toAccountId: "a2", fee: 0, merchant: "提領現金", date: iso(clamp(today - 3), 11) }),
-      mkTxn({ type: "EXPENSE", amount: 35, currency: "USD", categoryId: "c5", accountId: "a4", merchant: "Spotify (USD)", date: iso(clamp(today - 1), 10) })
-    ];
-    await sb().from("accounts").insert(accounts.map(dbAccount));
     await sb().from("categories").insert(categories);
-    await sb().from("projects").insert(projects);
     await sb().from("tags").insert(tags);
-    await sb().from("transactions").insert(transactions.map(dbTxn));
     await sb().from("prefs").upsert({ user_id: userId, accent: "blue", surface: "warm", font: "round" });
   }
 

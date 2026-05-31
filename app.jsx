@@ -115,7 +115,7 @@ function MainApp() {
             <ThemeControls />
           </details>
           <button className="sidebar__add" onClick={() => openAdd()}><IconApp name="plus" />記一筆</button>
-          <button className={"sidebar__reset" + (resetArmed ? " sidebar__reset--armed" : "")} onClick={onReset} title="重設範例資料"><IconApp name="repeat" />{resetArmed ? "再按一次確認" : "重設資料"}</button>
+          <button className={"sidebar__reset" + (resetArmed ? " sidebar__reset--armed" : "")} onClick={onReset} title="清空所有帳戶與交易"><IconApp name="repeat" />{resetArmed ? "再按一次確認清空" : "清空資料"}</button>
           <button className="sidebar__reset" onClick={logout} title="登出"><IconApp name="close" />登出</button>
         </div>
       </aside>
