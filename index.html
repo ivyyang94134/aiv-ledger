@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+<title>愛V記帳</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Huninn&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="app.css" />
+</head>
+<body>
+<div id="root">
+  <div style="display:grid;place-items:center;min-height:100vh;color:#9A9085;font-family:'Noto Sans TC',sans-serif;">載入中…</div>
+</div>
+
+<!-- 函式庫 -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="supabase-init.js"></script>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+
+<!-- 資料層與主題 -->
+<script src="store.js"></script>
+<script src="themes.js"></script>
+
+<!-- 元件（Babel 即時編譯）-->
+<script type="text/babel" src="ui.jsx"></script>
+<script type="text/babel" src="TxnForm.jsx"></script>
+<script type="text/babel" src="Dashboard.jsx"></script>
+<script type="text/babel" src="Transactions.jsx"></script>
+<script type="text/babel" src="Accounts.jsx"></script>
+<script type="text/babel" src="ThemePicker.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+</body>
+</html>
